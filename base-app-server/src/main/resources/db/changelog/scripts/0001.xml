@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+        <changeSet author="base-app" id="0001">
+            <sql>
+                DROP TABLE IF EXISTS `user`;
+                CREATE TABLE IF NOT EXISTS `user` (
+                `UUID` varchar(36) NOT NULL,
+                `FIRST_NAME` varchar(255) NOT NULL,
+                `LAST_NAME` varchar(255) NOT NULL,
+                `EMAIL` varchar(255) NOT NULL,
+                `CREATED_ON` datetime NOT NULL,
+                `UPDATED_ON` datetime NOT NULL,
+                PRIMARY KEY (`UUID`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+            </sql>
+        </changeSet>
+</databaseChangeLog>
