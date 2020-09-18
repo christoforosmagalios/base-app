@@ -24,3 +24,11 @@ services:
       - db
     networks:
       - base-app
+  ui:
+    build: base-app-ui
+    container_name: base-app-ui
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - base-app
