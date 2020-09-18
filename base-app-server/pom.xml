@@ -4,13 +4,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.github.cmag</groupId>
-		<artifactId>base-app</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<groupId>com.github.cmag</groupId>
 	<artifactId>base-app-server</artifactId>
 	<packaging>jar</packaging>
+
+	<name>base-app</name>
+	<description>Base Application</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -74,6 +79,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>base-app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -100,5 +106,14 @@
       </plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<activeProfile>prod</activeProfile>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

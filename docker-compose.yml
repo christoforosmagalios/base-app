@@ -8,10 +8,19 @@ services:
     image: mariadb:10.5.4-focal
     container_name: base-app-db
     restart: unless-stopped
-    command: --max_allowed_packet=1024000000
     ports:
       - "${DB_PORT}:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    networks:
+      - base-app
+  server:
+    build: base-app-server
+    container_name: base-app-server
+    restart: unless-stopped
+    environment:
+      spring.datasource.password: ${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - db
     networks:
       - base-app
