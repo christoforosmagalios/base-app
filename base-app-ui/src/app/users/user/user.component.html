@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-lg-4 col-md-8 col-12">
+        
+        <div class="app-header">
+            <h2>User</h2>
+        </div>
+
+        <form #userForm="ngForm" (ngSubmit)="save(userForm)">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="firstname">First name:</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" #firstname="ngModel"
+                            aria-describedby="firstname" placeholder="First name" [(ngModel)]="user.firstname" required>
+                        <span class="help-block text-danger" *ngIf="!firstname.valid && firstname.dirty">Please enter a First name.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="lastname">Last name:</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" #lastname="ngModel"
+                            aria-describedby="lastname" placeholder="Last name" [(ngModel)]="user.lastname" required>
+                        <span class="help-block text-danger" *ngIf="!lastname.valid && lastname.dirty">Please enter a Last name.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" class="form-control" id="email" name="email" #email="ngModel"
+                            aria-describedby="email" placeholder="E-mail" [(ngModel)]="user.email" required>
+                        <span class="help-block text-danger" *ngIf="!email.valid && email.dirty">Please enter an E-mail.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary pl-4 pr-4 float-right" [disabled]="!userForm.valid">Save</button>
+                    <button class="btn btn-secondary pl-4 pr-4 mr-2 float-right" routerLink="/users">Cancel</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

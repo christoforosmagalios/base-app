@@ -24,4 +24,22 @@ export class UserService {
         return this.http.get<PageDTO<UserDTO>>(Constants.API + '/users?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
+    /**
+     * Get The User with the given id.
+     * 
+     * @param id The User id.
+     */
+    getUser(id: string): Observable<UserDTO> {
+        return this.http.get<UserDTO>(Constants.API + '/users/' + id);
+    }
+
+    /**
+     * Save the given user.
+     * 
+     * @param user  The User to be saved.
+     */
+    save(user: UserDTO) {
+        return this.http.post<UserDTO>(Constants.API + '/users', user);
+    }
+
 }
