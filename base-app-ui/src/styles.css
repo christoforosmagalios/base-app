@@ -6,3 +6,19 @@
     margin: 10px 0px;
     text-align: right;
 }
+
+/** Table Sort Directive CSS Start **/
+[sortable]:hover {
+    cursor: pointer;
+}
+
+[sortable].asc::after {
+    position: absolute;
+    margin-left: 5px;
+}
+
+[sortable].desc::after {
+    position: absolute;
+    margin-left: 5px;
+}
+/** Table Sort Directive CSS End **/

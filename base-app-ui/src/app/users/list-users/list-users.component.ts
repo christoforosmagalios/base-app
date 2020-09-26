@@ -18,6 +18,11 @@ export class ListUsersComponent implements OnInit {
   collectionSize: number;
   // Users per page.
   size: number = 10;
+  // The sort options to be used in pagination.
+  sort = {
+    direction: "",
+    name: ""
+  };
 
   constructor(private userService: UserService) { }
 
@@ -30,11 +35,21 @@ export class ListUsersComponent implements OnInit {
    * Find all the users.
    */
   findAll() {
-    this.userService.findAll(this.size, (this.page - 1), "createdOn", "desc")
+    this.userService.findAll(this.size, (this.page - 1), this.sort.name, this.sort.direction)
     .subscribe((page: PageDTO<UserDTO>) => {
       this.users = page.content;
       this.collectionSize = page.totalElements;
     });
+  }
+
+  /**
+   * Update the sort object, and refetch the users.
+   * 
+   * @param newSort The new sort object.
+   */
+  getSort(newSort) {
+    this.sort = {...newSort};
+    this.findAll();
   }
 
 }

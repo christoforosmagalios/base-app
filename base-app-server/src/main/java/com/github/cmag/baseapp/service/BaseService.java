@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -42,6 +44,12 @@ public abstract class BaseService<D extends BaseDTO, E extends BaseEntity> {
    * other information.
    */
   public Page<D> findAll(Pageable pageable) {
+    // If unsorted, set default sorting.
+    if (!pageable.getSort().isSorted()) {
+      pageable = PageRequest.of(pageable.getPageNumber(),
+          pageable.getPageSize(), Sort.by("updatedOn").descending());
+    }
+
     Page<E> page = baseRepository.findAll(pageable);
     return page.map(this::entityToDto);
   }

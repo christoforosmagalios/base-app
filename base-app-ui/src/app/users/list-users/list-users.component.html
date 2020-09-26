@@ -13,9 +13,9 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
+                <th [columnName]="'firstname'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">First name</th>
+                <th [columnName]="'lastname'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">Last name</th>
+                <th [columnName]="'email'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">Email</th>
                 <th></th>
               </tr>
             </thead>

@@ -5,6 +5,7 @@ import { UsersRoutingModule } from './users.routing.module';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DirectivesModule } from '../shared/directives/directives.module';
 
 
 
@@ -14,7 +15,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     UsersRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    DirectivesModule
   ]
 })
 export class UsersModule { }

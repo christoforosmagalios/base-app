@@ -1,3 +1,10 @@
 export const Constants = {
-    API : '/api'
+    // The root URL of the API.
+    API : '/api',
+
+    // The sort directions.
+    ORDER: {
+        ASC: "asc",
+        DESC: "desc"
+    }
 };
