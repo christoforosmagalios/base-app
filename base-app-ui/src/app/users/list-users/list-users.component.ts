@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageDTO } from '../../dto/page-dto';
 import { UserDTO } from '../../dto/user-dto';
+import { Messages } from '../../shared/constants/messages';
 import { UtilsService } from '../../shared/services/utils.service';
 import { UserService } from '../user.service';
 
@@ -75,6 +76,7 @@ export class ListUsersComponent implements OnInit {
       // If the result is true, delete the user and refresh the user list.
       if (result) {
         this.userService.delete(user.id).subscribe(result => {
+          this.utilsService.showSuccess(Messages.DELETE_USER_SUCCESS);
           this.findAll();
         });
       }

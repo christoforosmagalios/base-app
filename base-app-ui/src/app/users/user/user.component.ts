@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UserDTO } from '../../dto/user-dto';
+import { Messages } from '../../shared/constants/messages';
+import { UtilsService } from '../../shared/services/utils.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -19,7 +21,8 @@ export class UserComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService,
+    private utilsService: UtilsService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -55,6 +58,7 @@ export class UserComponent implements OnInit {
 
     // Save the user and navigate to the users list view.
     this.userService.save(this.user).subscribe(result => {
+      this.utilsService.showSuccess(Messages.SAVE_USER_SUCCESS);
       this.router.navigate(['/users']);
     });
 
