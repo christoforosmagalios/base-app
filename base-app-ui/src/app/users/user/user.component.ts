@@ -39,10 +39,12 @@ export class UserComponent implements OnInit {
    * initialize the form.
    */
   initForm() {
-    // Show loader.
-    this.loader.show();
+    
     // If the id parameter is available fetch the user.
     if (this.id) {
+      // Show loader.
+      this.loader.show();
+
       this.userService.getUser(this.id).subscribe(user => {
         this.user = user;
         // Hide loader.

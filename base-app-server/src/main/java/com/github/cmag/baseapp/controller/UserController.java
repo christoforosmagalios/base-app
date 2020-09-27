@@ -2,9 +2,11 @@ package com.github.cmag.baseapp.controller;
 
 import com.github.cmag.baseapp.dto.UserDTO;
 import com.github.cmag.baseapp.service.UserService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Controller that contains CRUD endpoints for the User.
  */
+@Validated
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -52,7 +55,7 @@ public class UserController {
    * @return The saved userDTO.
    */
   @PostMapping
-  public UserDTO save(@RequestBody UserDTO userDTO) {
+  public UserDTO save(@Valid @RequestBody UserDTO userDTO) {
     return userService.save(userDTO);
   }
 
