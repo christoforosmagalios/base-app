@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageDTO } from '../../dto/page-dto';
 import { UserDTO } from '../../dto/user-dto';
+import { UtilsService } from '../../shared/services/utils.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -23,8 +24,14 @@ export class ListUsersComponent implements OnInit {
     direction: "",
     name: ""
   };
+  // Title for the delete-user confirmation modal.
+  deleteUserTitle = "Delete User";
+  // Description for the delete-user confirmation modal.
+  deleteUserDescription = "Are you sure you want to delete ";
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private utilsService: UtilsService) { }
 
   ngOnInit() {
     // Find all users in order to display them.
@@ -50,6 +57,28 @@ export class ListUsersComponent implements OnInit {
   getSort(newSort) {
     this.sort = {...newSort};
     this.findAll();
+  }
+
+  /**
+   * Open a confirmation modal, and delete the User.
+   * 
+   * @param user The User to be deleted.
+   */
+  delete(user: UserDTO) {
+    // Open the confirmation modal.
+    const modal = this.utilsService.confirmation(
+      this.deleteUserTitle, 
+      this.deleteUserDescription + user.firstname + ' ' + user.lastname + '?'
+    );
+
+    modal.result.then(result => {
+      // If the result is true, delete the user and refresh the user list.
+      if (result) {
+        this.userService.delete(user.id).subscribe(result => {
+          this.findAll();
+        });
+      }
+    });
   }
 
 }

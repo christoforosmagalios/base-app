@@ -42,4 +42,13 @@ export class UserService {
         return this.http.post<UserDTO>(Constants.API + '/users', user);
     }
 
+    /**
+     * Delete the User with the given id.
+     * 
+     * @param id The User id.
+     */
+    delete(id: string): Observable<any> {
+        return this.http.delete(Constants.API + '/users/' + id);
+    }
+
 }

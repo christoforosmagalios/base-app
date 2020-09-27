@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsersModule } from './users/users.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
