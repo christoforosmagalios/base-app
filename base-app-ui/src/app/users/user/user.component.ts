@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UserDTO } from '../../dto/user-dto';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { Messages } from '../../shared/constants/messages';
 import { UtilsService } from '../../shared/services/utils.service';
 import { UserService } from '../user.service';
@@ -22,7 +23,8 @@ export class UserComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private utilsService: UtilsService) { }
+    private utilsService: UtilsService,
+    private loader: LoaderService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
@@ -37,10 +39,14 @@ export class UserComponent implements OnInit {
    * initialize the form.
    */
   initForm() {
+    // Show loader.
+    this.loader.show();
     // If the id parameter is available fetch the user.
     if (this.id) {
       this.userService.getUser(this.id).subscribe(user => {
         this.user = user;
+        // Hide loader.
+        this.loader.hide();
       });
     }
   }
@@ -56,9 +62,15 @@ export class UserComponent implements OnInit {
       return;
     }
 
+    // Show loader.
+    this.loader.show();
+
     // Save the user and navigate to the users list view.
     this.userService.save(this.user).subscribe(result => {
       this.utilsService.showSuccess(Messages.SAVE_USER_SUCCESS);
+      // Hide loader.
+      this.loader.hide();
+      // Navigate to users list view.
       this.router.navigate(['/users']);
     });
 

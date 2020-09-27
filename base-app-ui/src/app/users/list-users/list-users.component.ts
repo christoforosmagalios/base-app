@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageDTO } from '../../dto/page-dto';
 import { UserDTO } from '../../dto/user-dto';
+import { LoaderService } from '../../shared/components/loader/loader.service';
 import { Messages } from '../../shared/constants/messages';
 import { UtilsService } from '../../shared/services/utils.service';
 import { UserService } from '../user.service';
@@ -32,7 +33,8 @@ export class ListUsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private utilsService: UtilsService) { }
+    private utilsService: UtilsService,
+    private loader: LoaderService) { }
 
   ngOnInit() {
     // Find all users in order to display them.
@@ -43,10 +45,15 @@ export class ListUsersComponent implements OnInit {
    * Find all the users.
    */
   findAll() {
+    // Show loader.
+    this.loader.show();
+    // Find Users.
     this.userService.findAll(this.size, (this.page - 1), this.sort.name, this.sort.direction)
     .subscribe((page: PageDTO<UserDTO>) => {
       this.users = page.content;
       this.collectionSize = page.totalElements;
+      // Hide loader.
+      this.loader.hide();
     });
   }
 
@@ -75,6 +82,9 @@ export class ListUsersComponent implements OnInit {
     modal.result.then(result => {
       // If the result is true, delete the user and refresh the user list.
       if (result) {
+        // Show loader.
+        this.loader.show();
+        // Delete user.
         this.userService.delete(user.id).subscribe(result => {
           this.utilsService.showSuccess(Messages.DELETE_USER_SUCCESS);
           this.findAll();

@@ -10,11 +10,13 @@ import { ConfirmationModalComponent } from './shared/components/confirmation-mod
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpInterceptorService } from './shared/interceptor/http-interceptor.service';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
