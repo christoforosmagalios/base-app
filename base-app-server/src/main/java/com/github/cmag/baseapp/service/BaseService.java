@@ -1,5 +1,6 @@
 package com.github.cmag.baseapp.service;
 
+import com.github.cmag.baseapp.config.AppConstants;
 import com.github.cmag.baseapp.dto.BaseDTO;
 import com.github.cmag.baseapp.mapper.BaseMapper;
 import com.github.cmag.baseapp.model.BaseEntity;
@@ -47,7 +48,7 @@ public abstract class BaseService<D extends BaseDTO, E extends BaseEntity> {
     // If unsorted, set default sorting.
     if (!pageable.getSort().isSorted()) {
       pageable = PageRequest.of(pageable.getPageNumber(),
-          pageable.getPageSize(), Sort.by("updatedOn").descending());
+          pageable.getPageSize(), Sort.by(AppConstants.UPDATED_ON).descending());
     }
 
     Page<E> page = baseRepository.findAll(pageable);
