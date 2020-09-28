@@ -2,6 +2,8 @@ package com.github.cmag.baseapp.controller;
 
 import com.github.cmag.baseapp.dto.UserDTO;
 import com.github.cmag.baseapp.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @RequestMapping("/users")
+@Api(tags="User")
 public class UserController {
 
   @Autowired
@@ -32,6 +35,7 @@ public class UserController {
    * @param pageable Contains pagination info.
    * @return The Page result.
    */
+  @Operation(summary = "Find all the users.")
   @GetMapping
   public Page<UserDTO> findAll(Pageable pageable) {
     return userService.findAll(pageable);
@@ -43,6 +47,7 @@ public class UserController {
    * @param id The User id.
    * @return The UserDTO.
    */
+  @Operation(summary = "Find a user based on the id.")
   @GetMapping("{id}")
   public UserDTO getUser(@PathVariable("id") String id) {
     return userService.findOne(id);
@@ -54,6 +59,7 @@ public class UserController {
    * @param userDTO The userDTO to be saved.
    * @return The saved userDTO.
    */
+  @Operation(summary = "Create or update a user.")
   @PostMapping
   public UserDTO save(@Valid @RequestBody UserDTO userDTO) {
     return userService.save(userDTO);
@@ -64,6 +70,7 @@ public class UserController {
    *
    * @param id The User id.
    */
+  @Operation(summary = "Delete a user.")
   @DeleteMapping("{id}")
   public void delete(@PathVariable("id") String id) {
     userService.delete(id);
