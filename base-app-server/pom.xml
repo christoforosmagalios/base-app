@@ -26,6 +26,7 @@
 		<hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
     <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
     <springfox-swagger-ui.version>3.0.0</springfox-swagger-ui.version>
+    <jacoco.version>0.8.6</jacoco.version>
 	</properties>
 
 	<dependencies>
@@ -122,6 +123,36 @@
             </annotationProcessorPath>
           </annotationProcessorPaths>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <configuration>
+          <excludes>
+            <exclude>com/github/cmag/baseapp/dto/**</exclude>
+						<exclude>com/github/cmag/baseapp/model/**</exclude>
+						<exclude>com/github/cmag/baseapp/mapper/**</exclude>
+						<exclude>com/github/cmag/baseapp/config/**</exclude>
+						<exclude>com/github/cmag/baseapp/BaseappApplication.class</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <id>jacoco-initialize</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <phase>test-compile</phase>
+          </execution>
+          <execution>
+            <id>jacoco-site</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 		</plugins>
 	</build>
