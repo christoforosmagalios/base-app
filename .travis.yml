@@ -12,5 +12,5 @@ matrix:
         - "12"
       before_script:
         - cd base-app-ui
-          npm install -g @angular/cli@9.0.0
+          npm install -g @angular/cli
       script: ng build --prod
