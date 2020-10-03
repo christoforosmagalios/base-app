@@ -10,6 +10,8 @@ matrix:
     - language: node_js
       node_js:
         - "12"
+      dist: trusty
+      sudo: required
       before_script:
         - cd base-app-ui
           npm install -g @angular/cli
