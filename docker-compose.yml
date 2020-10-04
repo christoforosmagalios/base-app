@@ -15,7 +15,9 @@ services:
     networks:
       - base-app
   server:
-    build: base-app-server
+    build:
+      context: .
+      dockerfile: base-app-server/Dockerfile
     container_name: base-app-server
     restart: unless-stopped
     environment:
