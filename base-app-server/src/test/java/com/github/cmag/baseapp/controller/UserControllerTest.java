@@ -20,7 +20,7 @@ import org.springframework.data.domain.Pageable;
  * Contains test methods for the {@link UserController}.
  */
 @ExtendWith(MockitoExtension.class)
-public class UserControllerTest {
+class UserControllerTest {
 
   @InjectMocks
   private UserController userController;

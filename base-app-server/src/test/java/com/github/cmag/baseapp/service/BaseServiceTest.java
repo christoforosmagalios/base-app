@@ -31,7 +31,7 @@ import org.springframework.data.domain.Sort;
  * Contains test methods for the {@link BaseService}.
  */
 @ExtendWith(MockitoExtension.class)
-public class BaseServiceTest {
+class BaseServiceTest {
 
   @InjectMocks
   private UserService userService;
