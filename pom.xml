@@ -19,6 +19,8 @@
 
 	<properties>
 		<sonar.organization>christoforosmagalios</sonar.organization>
+		<sonar.projectKey>Base-App</sonar.projectKey>
+		<sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
