@@ -1,5 +1,5 @@
-<div class="row justify-content-center">
-    <div class="col-lg-8 col-12">
+<div class="row justify-content-center pl-2 pr-2">
+    <div class="col-lg-8 col-12 card text-white card-bg-dark-color mt-5">
         
         <div class="app-header">
             <h2>Users ({{ collectionSize }})</h2>
@@ -9,34 +9,35 @@
             <a href="#" routerLink="/user" class="text-light"><i class="fas fa-plus"></i> Create new User</a>
         </div>
 
-        <table class="table table-striped table-dark" *ngIf="users.length > 0">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th [columnName]="'firstname'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">First name</th>
-                <th [columnName]="'lastname'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">Last name</th>
-                <th [columnName]="'email'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">Email</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of users; let i = index;">
-                <th>{{ i + 1 }}</th>
-                <td>{{ user.firstname }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.email }}</td>
-                <td class="text-right">
-                    <button class="btn btn-primary btn-sm" routerLink="/user/{{ user.id }}" ngbTooltip="Edit">
-                      <i class="fas fa-pencil-alt"></i>
-                    </button>
-                    <button class="btn btn-danger btn-sm ml-1" (click)="delete(user)" ngbTooltip="Delete">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
+        <div class="table-responsive" *ngIf="users.length > 0">
+          <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th [columnName]="'firstname'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">First name</th>
+                  <th [columnName]="'lastname'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">Last name</th>
+                  <th [columnName]="'email'" [active]="sort.name" sortable (ngModelChange)="getSort($event)">Email</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users; let i = index;">
+                  <th>{{ i + 1 }}</th>
+                  <td>{{ user.firstname }}</td>
+                  <td>{{ user.lastname }}</td>
+                  <td>{{ user.email }}</td>
+                  <td class="text-right actions-td-min-width">
+                      <button class="btn btn-primary btn-sm" routerLink="/user/{{ user.id }}" ngbTooltip="Edit">
+                        <i class="fas fa-pencil-alt"></i>
+                      </button>
+                      <button class="btn btn-danger btn-sm ml-1" (click)="delete(user)" ngbTooltip="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <ngb-alert *ngIf="users.length === 0" type="custom" [dismissible]="false" class="bg-info mt-5">
             No users available.
           </ngb-alert>

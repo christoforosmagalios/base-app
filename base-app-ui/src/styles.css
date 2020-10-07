@@ -1,3 +1,11 @@
+body {
+	background-image: url('assets/green-dust-and-scratches.png');
+}
+
+.card-bg-dark-color {
+    background-color: rgba(64, 72, 79, 0.6) !important;
+}
+
 .app-header {
     margin: 30px 0px 20px 0px;
 }

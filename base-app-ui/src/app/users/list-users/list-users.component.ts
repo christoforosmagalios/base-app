@@ -18,7 +18,7 @@ export class ListUsersComponent implements OnInit {
   // Active page.
   page = 1;
   // Total number of users in the Database.
-  collectionSize: number;
+  collectionSize: number = 0;
   // Users per page.
   size: number = 10;
   // The sort options to be used in pagination.
